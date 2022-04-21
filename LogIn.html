@@ -1,0 +1,90 @@
+<html>
+<head>
+<title>Log In</title>
+<style>
+    .container {
+            background: rgb(222, 255, 77);
+            display: flex;
+            border-radius: 10px;
+            flex-direction: column;
+            align-items: center;
+            width: 500px;
+            margin: 100px auto 0;
+            padding : 20px;
+        }
+</style>
+</head>
+<body>
+    <div class="container">
+    <center>
+        
+    <h1>Log In</h1>
+    <p id="already" class="hide">Please register</p>
+    <form action="ToDo.html" method="post" onSubmit="return get()">
+        
+        <table>
+            <tr>
+                <td>
+                    Username:
+                </td>
+                <td>
+                    <input type="text" id="uname" placeholder="Username" name="uname" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Password:
+                </td>
+                <td>
+                    <input type="password" id="pwd" placeholder="Password" name="pwd" required>
+                </td>
+            </tr>
+            <tr align="center">
+                <td colspan="2">
+                    <input type="submit" id="sub" value="SUBMIT" onclick="get()">
+                </td>
+            </tr>
+        </table>
+        <lable>Registered? <a href="SignUp.html">SignUp</a></lable>
+    </form>
+    </center>
+</div>
+    <script>
+        function get()
+        {
+            sessionStorage.clear();
+            if(localStorage['signup'] != undefined){
+            var uname = document.getElementById("uname").value.trim();
+            var pwd = document.getElementById("pwd").value.trim();
+            console.log(pwd);
+            let getdetails = JSON.parse(localStorage['signup']);
+            let finduser = getdetails.users.find(element => element.uname == uname && element.pwd == pwd);
+            
+            if(finduser){
+                let login = {
+                    "uname": uname,
+                    "pwd": pwd
+                }
+                sessionStorage.setItem('login',JSON.stringify(login));
+                document.getElementById('already').style.display="block";
+                return true;
+            }
+
+            if(!getdetails)
+            {
+                alert(" Not a Registered Account! ");
+                return false;
+            }
+            else{
+                alert(" Invalid Username or Password ");
+                return false;
+            }
+        }
+        else{
+                document.getElementById('already').style.display="block";
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>

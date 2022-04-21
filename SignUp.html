@@ -1,0 +1,95 @@
+<html>
+
+<head>
+    <title>Sign up</title>
+    <style>
+        .container {
+            background: rgb(222, 255, 77);
+            display: flex;
+            border-radius: 10px;
+            flex-direction: column;
+            align-items: center;
+            width: 500px;
+            margin: 100px auto 0;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <div class="container">
+            <h1>Sign Up</h1>
+            <p id="already" class="hide">Already registered</p>
+            <form action="LogIn.html" method="get" onSubmit = "return set()">
+                <table>
+                    <tr>
+                        <td>
+                            Username:
+                        </td>
+                        <td>
+                            <input type="text" id="uname" placeholder="Username" name="uname" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Email:
+                        </td>
+                        <td>
+                            <input type="email" id="email" placeholder="abc@gmail.com" name="email" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Password:
+                        </td>
+                        <td>
+                            <input type="password" id="pwd" placeholder="Password" name="pwd" required>
+                        </td>
+                    </tr>
+                    <tr align="center">
+                        <td colspan="2">
+                            <input type="submit" value="SUBMIT" onclick="set()">
+                        </td>
+                    </tr>
+
+                </table>
+                <label>Already have account? <a href="LogIn.html">LogIn</a></label>
+            </form>
+        </div>
+    </center>
+    <script>
+        function set() {
+            let uname = document.getElementById("uname").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let pwd = document.getElementById("pwd").value.trim();
+
+            if (localStorage['signup'] == undefined) {
+                let users = {
+                    "users": [],
+                }
+                localStorage['signup'] = JSON.stringify(users);
+            }
+            let store = JSON.parse(localStorage['signup']);
+            if (store.users.length > 0) {
+                let check = store.users.find(element => element.uname == uname && element.pwd == pwd)
+                if (check) {
+                    document.getElementById('already').style.display="block";
+                    return false;
+                }
+            }
+            let newuser = {
+                "uname": uname,
+                "email": email,
+                "pwd": pwd,
+                "list": []
+            };
+            store.users.push(newuser);
+            alert("Account Created");
+            localStorage['signup'] = JSON.stringify(store);
+            console.log(store);
+        }
+    </script>
+</body>
+
+</html>

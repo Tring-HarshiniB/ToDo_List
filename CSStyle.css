@@ -1,0 +1,79 @@
+body {
+    background: #fff;
+    color: #333;
+    font-family:'Times New Roman', Times, serif;
+    display: flex;
+}
+
+.container {
+    background:burlywood;
+    display: flex;
+    border-radius: 10px;
+    flex-direction: column;
+    align-items: center;
+    width: 500px;
+    margin: 100px auto 0;
+    overflow: scroll;
+}
+
+input,
+button {
+    outline: none;
+}
+
+button {
+    background:#333;
+    border: 0px;
+    color:#ddd;
+    font-size: 15px;
+    width: 85px;
+    margin: 15px 0 0;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    cursor: pointer;
+}
+
+button:hover {
+    color: #333;
+}
+
+h3,
+label[for='new-task'] {
+    color: #333;
+    font-weight: 700;
+    font-size: 15px;
+    border-bottom: 2px solid #333;
+    padding: 30px 0 10px;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+input[type="text"] {
+    margin: 0;
+    font-size: 18px;
+    line-height: 18px;
+    height: 18px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background: #fff;
+    border-radius: 6px;
+    font-family: Lato, sans-serif;
+    color: #888;
+}
+
+input[type="text"]:focus {
+    color: #333;
+}
+
+label[for='new-task'] {
+    display: block;
+    margin: 0 0 20px;
+}
+
+input#new-task {
+    float: left;
+    width: 318px;
+}
+
+p>button:hover {
+    color: #0FC57C;
+}
